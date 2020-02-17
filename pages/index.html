@@ -57,7 +57,7 @@
         nome_usuario = ff[Math.floor(Math.random() * ff.length)];
     }
 
-    socket.emit('chat message', "Bem vindo! " + nome_usuario);
+    socket.emit('message', "Bem vindo! " + nome_usuario);
     // adiciona um addEventListener para o botão de submit
     document.getElementById('enviar_menssagem').addEventListener("click", enviar_menssagem);
     // cria a função que conecta no websocket e emite a mensagem
@@ -67,7 +67,7 @@
       if (msg.length > 0) {
           console.log(msg);
           // concatena o nome de usuário e a mensagem para enviar ao socketIo
-          socket.emit('chat message', nome_usuario + ": " + msg);
+          socket.emit('message', nome_usuario + ": " + msg);
           // reseta o valor do input da mensagem
           document.getElementById('menssagem').value = "";
       }

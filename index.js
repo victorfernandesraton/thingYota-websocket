@@ -12,15 +12,15 @@ require('dotenv').config({
 
 // Informações da rede
 require('dns').lookup(require('os').hostname(), (err, add, fam)  =>{
-  console.info(`addr: ${add}`);
-  console.info(`fan: ${fam}`);
+  console.info(`addr: ${add} fan: ${fam}`);
 });
 
 // basic socket learn
 io.on('connection', (socket, req) => {
-  console.log("Connection :")
+  console.info(new Date)
+  console.log(`Connection : ${socket.id}`)
   socket.on('mmessage', (message) => {
-    console.log(new Date)
+    console.info(new Date)
     console.info(req);
     console.log("message");
     console.log(message)
