@@ -29,6 +29,11 @@ io.sockets.on('connection', (socket, req) => {
     console.log(payload);
     io.sockets.emit("message", payload)
   });
+
+  // arduino
+  socket.on("arduino", payload => {
+    console.log("payload");
+  })
 });
 
 
