@@ -4,4 +4,4 @@ COPY package.json /websocket
 RUN npm install
 COPY . /websocket
 CMD npm run dev
-EXPOSE 3000
+EXPOSE 4000

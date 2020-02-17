@@ -1,51 +1,39 @@
-require('dotenv').config({
-  path:  process.env.NODE_ENV == 'development' ? '.env.development' : '.env'
-})
-
-const 
-  restify = require('restify'),
-  fs = require('fs'),
-  path = require('path'),
-  socketio = require('socket.io'),
-  server = restify.createServer(),
+const
+  constants = require('./constants/server'),
+  server = require("./server"),
+  socketio = require("socket.io"),
+  routes = require("./routes/"),
   io = socketio.listen(server.server);
 
-
-io.sockets.on('connection', (socket) => {
-  console.log("Connection");
-  // quando chega messagen do chat
-  socket.on("chat message", data => {
-    console.log(data);
-    // broadcast para todos receber as menssagens
-    io.sockets.emit("chat message", data)
-    // caso use socket no lugar de socket.io a emissão é apenas para o usuário
-  });
-
-  // evento de ip
-  socket.on('ip', data => {
-    console.log(data);
-  })
-
-  socket.on("mac" , data => {
-    console.log(data)
-  })
+// Variaveis de ambiente
+require('dotenv').config({
+  path: constants.enviroment == 'development' ? '.env.development' : '.env'
 });
 
-// Página do chat para testes
-server.get('/chat', function indexHTML(req, res, next) {
-  fs.readFile(path.resolve(__dirname,'pages','index.html'), function (err, data) {
-      if (err) {
-          next(err);
-          return;
-      }
+// Informações da rede
+require('dns').lookup(require('os').hostname(), (err, add, fam)  =>{
+  console.info(`addr: ${add}`);
+  console.info(`fan: ${fam}`);
+});
 
-      res.setHeader('Content-Type', 'text/html');
-      res.writeHead(200);
-      res.end(data);
-      // next();
+// basic socket learn
+io.on('connection', (socket, req) => {
+  console.log("Connection :")
+  socket.on('mmessage', (message) => {
+    console.log(new Date)
+    console.info(req);
+    console.log("message");
+    console.log(message)
+    io.sockets.emit("teste", "teste")
   });
 });
 
-server.listen(process.env.PORT, (data) =>{
-  console.log('listening on', process.env.PORT);
+// Hook de rotas
+routes(server)
+
+// Start do server
+server.listen(constants.PORT, () => {
+  console.info(new Date)
+  console.info("Server run", constants.PORT);
+  console.info("Press Ctrl+C to kill this server")
 });
