@@ -5,6 +5,9 @@ const
   routes = require("./routes/"),
   io = socketio.listen(server.server);
 
+
+const 
+  chat = require('./routes/chat/').socketHandle;
 // Variaveis de ambiente
 require('dotenv').config({
   path: constants.enviroment == 'development' ? '.env.development' : '.env'
@@ -16,17 +19,18 @@ require('dns').lookup(require('os').hostname(), (err, add, fam)  =>{
 });
 
 // basic socket learn
-io.on('connection', (socket, req) => {
+io.sockets.on('connection', (socket, req) => {
   console.info(new Date)
   console.log(`Connection : ${socket.id}`)
-  socket.on('mmessage', (message) => {
-    console.info(new Date)
-    console.info(req);
-    console.log("message");
-    console.log(message)
-    io.sockets.emit("teste", "teste")
+  // chat nessage
+  socket.on('message', payload => {
+    console.info(new Date);
+    console.log("Chat message as recived");
+    console.log(payload);
+    io.sockets.emit("message", payload)
   });
 });
+
 
 // Hook de rotas
 routes(server)

@@ -73,7 +73,7 @@
       }
     }
     // sempre que receber uma mensagem ela é adicionada a lista
-    socket.on('chat message', function(msg){
+    socket.on('message', function(msg){
         // busca o elemento UL
         let ul = document.getElementById("messages");
         // cria um elemento LI
