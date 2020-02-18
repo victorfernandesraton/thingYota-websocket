@@ -1,4 +1,4 @@
 module.exports = {
-    controller : require('./controller'),
-    socketHandle : require('./socketHandle')
+  controller: require('./controller'),
+  socketHandle: require('./socketHandle')
 }

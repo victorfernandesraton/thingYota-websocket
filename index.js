@@ -6,7 +6,7 @@ const
   io = socketio.listen(server.server);
 
 
-const 
+const
   chat = require('./routes/chat/').socketHandle;
 // Variaveis de ambiente
 require('dotenv').config({
@@ -14,7 +14,7 @@ require('dotenv').config({
 });
 
 // Informações da rede
-require('dns').lookup(require('os').hostname(), (err, add, fam)  =>{
+require('dns').lookup(require('os').hostname(), (err, add, fam) => {
   console.info(`addr: ${add} fan: ${fam}`);
 });
 
