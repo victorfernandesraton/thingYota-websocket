@@ -24,10 +24,7 @@ io.sockets.on('connection', (socket, req) => {
   console.log(`Connection : ${socket.id}`)
   // chat nessage
   socket.on('message', payload => {
-    console.info(new Date);
-    console.log("Chat message as recived");
-    console.log(payload);
-    io.sockets.emit("message", payload)
+    chat(payload, io.sockets);
   });
 
   // arduino
