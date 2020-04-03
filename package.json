@@ -11,8 +11,11 @@
     "socket",
     "websocket"
   ],
-  
+
   "author": "victorfernandesraton",
+  "repository": {
+    "url": "https://github.com/victorfernandesraton/thingYota-websocket.git"
+  },
   "license": "MIT",
   "dependencies": {
     "dotenv": "^8.2.0",
