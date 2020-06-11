@@ -4,7 +4,7 @@
 //  * Env decisio
 //  */
 const path = require("path");
-const envDecision = require('../utils/envDecision');
+const envDecision = require('../src/utils/envDecision');
 
 require("dotenv").config({
   path: path.resolve(__dirname, "../", envDecision(process.env.NODE_ENV)),
@@ -15,7 +15,14 @@ require("dotenv").config({
  */
 
 const env = require('../env/');
-const server = require('../server');
+const server = require('../src/server');
+
+
+/**
+ * socket.io
+ */
+
+const socket = require('../src/socket')(server);
 
 /**
  * Server run

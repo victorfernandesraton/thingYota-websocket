@@ -13,7 +13,7 @@ require("dotenv").config({
 /**
  * Module dependencies.
  */
-const env = require("./env/index");
+const env = require("../env/index");
 const app = require("./app");
 const http = require("http");
 
