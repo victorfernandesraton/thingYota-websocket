@@ -1,0 +1,31 @@
+// #!/usr/bin/env node
+
+// /**
+//  * Env decisio
+//  */
+const path = require("path");
+const envDecision = require('../src/utils/envDecision');
+
+require("dotenv").config({
+  path: path.resolve(__dirname, "../", envDecision(process.env.NODE_ENV)),
+});
+
+/**
+ * Modules
+ */
+
+const env = require('../env/');
+const server = require('../src/server');
+
+
+/**
+ * socket.io
+ */
+
+const socket = require('../src/socket')(server);
+
+/**
+ * Server run
+ */
+
+server.listen(env.server.port);
