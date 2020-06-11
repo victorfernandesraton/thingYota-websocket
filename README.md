@@ -1,4 +1,4 @@
-# thingyota-api-2
+# thingYota-websocket
 > Server REST api and Socket.io for monitoring water system
 
 ## Table of contents
@@ -43,4 +43,4 @@ Project is: _in progress_
 
 ## License
 
-MIT license © [victorfeernandesraton]()
+MIT license © [victorfeernandesraton](https://github.com/victorfernandesraton/thingYota-websocket/blob/master/LICENSE.md)
